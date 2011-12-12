@@ -75,7 +75,7 @@ void Q3DSEncode::saveSettings(){
     if (srcFile.exists()){ //May be an URL
         settings.setValue("path/source", srcFile.dir().absolutePath());
     }
-    settings.setValue("path/output", outFile.dir().absolutePath());
+    settings.setValue("path/output", QFileInfo(ui->txtOutputVideo->text()).dir().absolutePath());
 
     settings.setValue("videoType/3D", ui->gbVideoType->isChecked());
     settings.setValue("videoType/SBS", ui->radSideBySide->isChecked());
