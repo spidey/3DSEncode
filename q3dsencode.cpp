@@ -14,6 +14,9 @@ Q3DSEncode::Q3DSEncode(QWidget *parent) :
     configureUi();
 
     makeConnections();
+
+    //DISABLE CONVERTION, IT'S NOT READY YET
+    ui->btnConvert->setDisabled(true);
 }
 
 Q3DSEncode::~Q3DSEncode() {
