@@ -6,9 +6,12 @@ TARGET = 3DSEncode
 QT += core gui
 TEMPLATE = app
 
-TRANSLATIONS += 3DSEncodeGUI_en.ts\
-                3DSEncodeGUI_es.ts\
-                3DSEncodeGUI_pt.ts
+TRANSLATIONS += 3DSEncode_en.ts\
+                3DSEncode_es.ts\
+                3DSEncode_pt.ts\
+                3DSEncode_fr.ts\
+                3DSEncode_it.ts\
+                3DSEncode_de.ts
 
 # Input
 HEADERS += \
@@ -18,14 +21,6 @@ FORMS += \
 SOURCES += main.cpp \
     q3dsencode.cpp
 
-DESTDIR = ~/3DSEncodeGUI_Release/
-
-CONFIG += debug_and_release
-
-CONFIG(debug, debug|release) {
-    TARGET = 3DSEncodeGUI_debug
-}
-
-
-
+RESOURCES += \
+    3dsencode.qrc
 

@@ -1,13 +1,13 @@
 #include <QtGui/QApplication>
-#include "q3dsencodegui.h"
+#include "q3dsencode.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
-    Q3DSEncodeGUI w;
+    Q3DSEncode w;
     w.setFixedSize(w.sizeHint());
     w.show();
 
-    return a.exec();
+    return app.exec();
 }

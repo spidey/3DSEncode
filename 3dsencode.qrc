@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/3ds_icon.png</file>
+        <file>images/application-exit.png</file>
+        <file>images/document-open.png</file>
+        <file>images/document-save.png</file>
+        <file>images/help-about.png</file>
+        <file>images/preferences-desktop-locale.png</file>
+        <file>images/video-x-generic.png</file>
+    </qresource>
+</RCC>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Q3DSEncodeGUI</class>
- <widget class="QMainWindow" name="Q3DSEncodeGUI">
+ <class>Q3DSEncode</class>
+ <widget class="QMainWindow" name="Q3DSEncode">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>431</width>
-    <height>482</height>
+    <width>387</width>
+    <height>387</height>
    </rect>
   </property>
   <property name="acceptDrops">
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>3DSEncodeGUI</string>
+   <string>3DSEncode</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -29,14 +29,13 @@
       <item>
        <widget class="QLabel" name="lblSourceVideo">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Source Video
-or Video URL</string>
+         <string>Video File or URL</string>
         </property>
        </widget>
       </item>
@@ -61,19 +60,19 @@ or Video URL</string>
     <item>
      <widget class="QTabWidget" name="twOptions">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab2D3D">
        <attribute name="title">
-        <string>&amp;2D/3D</string>
+        <string>2D/3D</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QGroupBox" name="gbVideoType">
           <property name="enabled">
@@ -87,7 +86,7 @@ or Video URL</string>
           </property>
           <property name="minimumSize">
            <size>
-            <width>400</width>
+            <width>0</width>
             <height>0</height>
            </size>
           </property>
@@ -100,649 +99,537 @@ or Video URL</string>
           <property name="checked">
            <bool>false</bool>
           </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QRadioButton" name="radSideBySide">
-             <property name="text">
-              <string>Side-By-Side</string>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <spacer name="hsVideoTypeLeft">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="checked">
-              <bool>true</bool>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>60</width>
+               <height>20</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
-           <item row="0" column="1">
-            <widget class="QRadioButton" name="radTopBottom">
-             <property name="text">
-              <string>Top-Bottom</string>
+           <item>
+            <layout class="QFormLayout" name="flVideoType">
+             <property name="labelAlignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QRadioButton" name="radRowInterleaved">
-             <property name="enabled">
-              <bool>false</bool>
+             <property name="formAlignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
              </property>
-             <property name="text">
-              <string>Row
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radSideBySide">
+               <property name="text">
+                <string>Side-By-Side</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radTopBottom">
+               <property name="text">
+                <string>Top-Bottom</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="radRowInterleaved">
+               <property name="text">
+                <string>Row
 Interleaved</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QRadioButton" name="radColumnInterleaved">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Column
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QRadioButton" name="radColumnInterleaved">
+               <property name="text">
+                <string>Column
 Interleaved</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-            </widget>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <spacer name="vsVideoType">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>13</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="chkReversed">
+               <property name="text">
+                <string>Reversed</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
-           <item row="1" column="2">
-            <widget class="QRadioButton" name="radCheckerboardInterleaved">
-             <property name="enabled">
-              <bool>false</bool>
+           <item>
+            <spacer name="hsVideoTypeRight">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="text">
-              <string>Checkerboard
-Interleaved</string>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>60</width>
+               <height>20</height>
+              </size>
              </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QRadioButton" name="radRedCyan">
-             <property name="text">
-              <string>Red-Cyan</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QRadioButton" name="radGreenMagenta">
-             <property name="text">
-              <string>Green-Magenta</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QRadioButton" name="radBlueYellow">
-             <property name="text">
-              <string>Blue-Yellow</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QCheckBox" name="chkReversed">
-             <property name="text">
-              <string>Reversed</string>
-             </property>
-            </widget>
+            </spacer>
            </item>
           </layout>
          </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabVideo">
+      <widget class="QWidget" name="tabAV">
        <attribute name="title">
-        <string>&amp;Video</string>
+        <string>A/V</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_7">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <layout class="QHBoxLayout" name="hlVideo">
-          <item>
-           <layout class="QVBoxLayout" name="vlCompressionFPSResolution">
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <spacer name="vsVideoTop">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="hlCompression">
-              <item>
-               <widget class="QLabel" name="lblCompression">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Compression</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spnCompression">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>80</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>31</number>
-                </property>
-                <property name="value">
-                 <number>10</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="vlCompressionSlider">
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QSlider" name="sldQuality">
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>31</number>
-                </property>
-                <property name="pageStep">
-                 <number>3</number>
-                </property>
-                <property name="value">
-                 <number>10</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="tickPosition">
-                 <enum>QSlider::TicksBelow</enum>
-                </property>
-                <property name="tickInterval">
-                 <number>30</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="hlCompressionSliderLabels">
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QLabel" name="lblCompressionBestQuality">
-                  <property name="text">
-                   <string>Best Quality</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="hsCompressionCenter">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLabel" name="lblCompressionSmallerSize">
-                  <property name="text">
-                   <string>Smaller size</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="vsVideoCenter">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <layout class="QFormLayout" name="flFPSResolution">
-              <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::ExpandingFieldsGrow</enum>
-              </property>
-              <property name="labelAlignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-              <property name="formAlignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="lblFPS">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>FPS</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QComboBox" name="cmbFPS">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>92</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-                <property name="currentIndex">
-                 <number>3</number>
-                </property>
-                <property name="insertPolicy">
-                 <enum>QComboBox::InsertAlphabetically</enum>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>10fps</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>12fps</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>15fps</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>20fps</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>24fps</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="lblResolution">
-                <property name="text">
-                 <string>Resolution</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QComboBox" name="cmbResolution">
-                <property name="minimumSize">
-                 <size>
-                  <width>92</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="currentIndex">
-                 <number>1</number>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>400x240</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>480x240</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="vsVideoBottom">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="gbCrop">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>152</width>
-              <height>141</height>
-             </size>
-            </property>
-            <property name="title">
-             <string>Crop</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-            <property name="checked">
-             <bool>false</bool>
-            </property>
-            <layout class="QFormLayout" name="formLayout_2">
-             <property name="formAlignment">
-              <set>Qt::AlignCenter</set>
+         <widget class="QGroupBox" name="gbAudio">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Audio</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <property name="formAlignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="lblChannels">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="lblTop">
-               <property name="text">
-                <string>Top</string>
+             <property name="text">
+              <string>Channels</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="cmbChannels">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>1 - Mono</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2 - Stereo</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="lblSampleRate">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Sample
+Rate</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="cmbSampleRate">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <property name="insertPolicy">
+              <enum>QComboBox::InsertAlphabetically</enum>
+             </property>
+             <item>
+              <property name="text">
+               <string>22.05KHz</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>44.1KHz</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>48KHz</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>96KHz</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbVideo">
+          <property name="title">
+           <string>Video</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QVBoxLayout" name="vlVideo">
+             <item>
+              <layout class="QHBoxLayout" name="hlCompression">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
+               </property>
+               <item>
+                <widget class="QLabel" name="lblCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Compression</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spnCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>31</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="vlCompressionSlider">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QSlider" name="sldCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>31</number>
+                 </property>
+                 <property name="pageStep">
+                  <number>3</number>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="tickPosition">
+                  <enum>QSlider::TicksBelow</enum>
+                 </property>
+                 <property name="tickInterval">
+                  <number>30</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="hlCompressionSliderLabels">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="lblCompressionBestQuality">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Best</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lblCompressionSmallerSize">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Smaller</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QFrame" name="hlnVideo">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::HLine</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spnCropTop">
-               <property name="suffix">
-                <string>px</string>
+             <item>
+              <layout class="QFormLayout" name="flFPSResolution">
+               <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
                </property>
-               <property name="maximum">
-                <number>10000</number>
+               <property name="labelAlignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="lblRight">
-               <property name="text">
-                <string>Right</string>
+               <property name="formAlignment">
+                <set>Qt::AlignCenter</set>
                </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spnCropRight">
-               <property name="suffix">
-                <string>px</string>
-               </property>
-               <property name="maximum">
-                <number>10000</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="lblBottom">
-               <property name="text">
-                <string>Bottom</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSpinBox" name="spnCropBottom">
-               <property name="suffix">
-                <string>px</string>
-               </property>
-               <property name="maximum">
-                <number>10000</number>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="lblLeft">
-               <property name="text">
-                <string>Left</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QSpinBox" name="spnCropLeft">
-               <property name="suffix">
-                <string>px</string>
-               </property>
-               <property name="maximum">
-                <number>10000</number>
-               </property>
-              </widget>
+               <item row="0" column="0">
+                <widget class="QLabel" name="lblFPS">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>FPS</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="cmbFPS">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>92</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentIndex">
+                  <number>3</number>
+                 </property>
+                 <property name="insertPolicy">
+                  <enum>QComboBox::InsertAlphabetically</enum>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>10fps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>12fps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>15fps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>20fps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>24fps</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>30fps</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="lblResolution">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Resolution</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="cmbResolution">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>92</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="currentIndex">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>400x240</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>480x240</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabAudio">
-       <attribute name="title">
-        <string>&amp;Audio</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <layout class="QHBoxLayout" name="hlAudio">
-          <item>
-           <spacer name="hsAudioLeft">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <layout class="QGridLayout" name="glAudio">
-            <item row="0" column="0">
-             <widget class="QLabel" name="lblSampleRate">
-              <property name="minimumSize">
-               <size>
-                <width>88</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Sample Rate</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="cmbSampleRate">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-              <property name="currentIndex">
-               <number>1</number>
-              </property>
-              <property name="insertPolicy">
-               <enum>QComboBox::InsertAlphabetically</enum>
-              </property>
-              <item>
-               <property name="text">
-                <string>22.05KHz</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>44.1KHz</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>48KHz</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>96KHz</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="lblAudioBitrate">
-              <property name="text">
-               <string>Bitrate</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="cmbAudioBitrate">
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <item>
-               <property name="text">
-                <string>64Kbps</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>96Kbps</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>128Kbps</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>196Kbps</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="lblChannels">
-              <property name="text">
-               <string>Channels</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QComboBox" name="cmbChannels">
-              <property name="currentIndex">
-               <number>1</number>
-              </property>
-              <property name="frame">
-               <bool>true</bool>
-              </property>
-              <item>
-               <property name="text">
-                <string>1 - Mono</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>2 - Stereo</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <spacer name="hsAudioRight">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -750,7 +637,7 @@ Interleaved</string>
        <attribute name="title">
         <string>Advanced</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <spacer name="vsAdvancedTop">
           <property name="orientation">
@@ -765,99 +652,95 @@ Interleaved</string>
          </spacer>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="vlAdvanced">
+         <layout class="QFormLayout" name="flAdvanced">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::ExpandingFieldsGrow</enum>
+          </property>
+          <property name="formAlignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblDate">
+            <property name="minimumSize">
+             <size>
+              <width>31</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Date</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDateTimeEdit" name="datDate">
+            <property name="displayFormat">
+             <string>yyyy-MM-dd hh:mm</string>
+            </property>
+            <property name="calendarPopup">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lblThreads">
+            <property name="text">
+             <string>Threads</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cmbThreads">
+            <property name="minimumSize">
+             <size>
+              <width>151</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="hlAdvanced">
           <item>
-           <layout class="QFormLayout" name="formLayout">
-            <property name="labelAlignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           <spacer name="hsSplitLeft">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="formAlignment">
-             <set>Qt::AlignCenter</set>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="lblCreated">
-              <property name="minimumSize">
-               <size>
-                <width>31</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Date</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QDateTimeEdit" name="datCreated">
-              <property name="displayFormat">
-               <string>yyyy-MM-dd hh:mm</string>
-              </property>
-              <property name="calendarPopup">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="lblThreads">
-              <property name="text">
-               <string>Threads</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="cmbThreads">
-              <property name="minimumSize">
-               <size>
-                <width>151</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           </spacer>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="hlAdvanced">
-            <item>
-             <spacer name="hsSplitLeft">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="chkSplit">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Split in 10 minute videos</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="hsSplitRight">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+           <widget class="QCheckBox" name="chkSplit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Split in 10 minute videos</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="hsSplitRight">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
@@ -886,7 +769,7 @@ Interleaved</string>
       <item>
        <widget class="QLabel" name="lblOutputVideo">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -940,7 +823,7 @@ Interleaved</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>431</width>
+     <width>387</width>
      <height>21</height>
     </rect>
    </property>
@@ -958,11 +841,17 @@ Interleaved</string>
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionTutorial"/>
     <addaction name="actionLanguage"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionLoadSettings"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionOpen">
@@ -1009,17 +898,6 @@ Interleaved</string>
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionTutorial">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Tutorial</string>
-   </property>
-   <property name="toolTip">
-    <string>Open the program tutorial</string>
-   </property>
-  </action>
   <action name="actionLanguage">
    <property name="text">
     <string>&amp;Language</string>
@@ -1036,7 +914,12 @@ Interleaved</string>
     <string>&amp;About</string>
    </property>
    <property name="toolTip">
-    <string>About 3DSEncoderGUI</string>
+    <string>About 3DSEncoder</string>
+   </property>
+  </action>
+  <action name="actionLoadSettings">
+   <property name="text">
+    <string>Load last used settings</string>
    </property>
   </action>
  </widget>
@@ -1044,23 +927,12 @@ Interleaved</string>
  <tabstops>
   <tabstop>txtSourceVideo</tabstop>
   <tabstop>btnSourceVideo</tabstop>
-  <tabstop>twOptions</tabstop>
   <tabstop>gbVideoType</tabstop>
-  <tabstop>radSideBySide</tabstop>
   <tabstop>radTopBottom</tabstop>
-  <tabstop>radRowInterleaved</tabstop>
-  <tabstop>radColumnInterleaved</tabstop>
-  <tabstop>radCheckerboardInterleaved</tabstop>
   <tabstop>chkReversed</tabstop>
   <tabstop>spnCompression</tabstop>
-  <tabstop>sldQuality</tabstop>
-  <tabstop>gbCrop</tabstop>
-  <tabstop>spnCropTop</tabstop>
-  <tabstop>spnCropRight</tabstop>
-  <tabstop>spnCropBottom</tabstop>
-  <tabstop>spnCropLeft</tabstop>
+  <tabstop>sldCompression</tabstop>
   <tabstop>cmbSampleRate</tabstop>
-  <tabstop>cmbAudioBitrate</tabstop>
   <tabstop>cmbChannels</tabstop>
   <tabstop>txtOutputVideo</tabstop>
   <tabstop>btnOutputVideo</tabstop>
@@ -1071,7 +943,7 @@ Interleaved</string>
   <connection>
    <sender>actionQuit</sender>
    <signal>triggered()</signal>
-   <receiver>Q3DSEncodeGUI</receiver>
+   <receiver>Q3DSEncode</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1117,7 +989,23 @@ Interleaved</string>
    </hints>
   </connection>
   <connection>
-   <sender>sldQuality</sender>
+   <sender>btnConvert</sender>
+   <signal>clicked()</signal>
+   <receiver>actionConvert</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sldCompression</sender>
    <signal>valueChanged(int)</signal>
    <receiver>spnCompression</receiver>
    <slot>setValue(int)</slot>
@@ -1135,7 +1023,7 @@ Interleaved</string>
   <connection>
    <sender>spnCompression</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>sldQuality</receiver>
+   <receiver>sldCompression</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1145,22 +1033,6 @@ Interleaved</string>
     <hint type="destinationlabel">
      <x>150</x>
      <y>187</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnConvert</sender>
-   <signal>clicked()</signal>
-   <receiver>actionConvert</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>215</x>
-     <y>407</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
     </hint>
    </hints>
   </connection>
