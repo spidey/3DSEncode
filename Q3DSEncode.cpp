@@ -1,49 +1,47 @@
-#include "q3dsencode.h"
-#include "ui_q3dsencode.h"
+#include "Q3DSEncode.h"
+#include "ui_Q3DSEncode.h"
+#include "QEncodingDialog.h"
 #include <QtGui>
 
 Q3DSEncode::Q3DSEncode(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Q3DSEncode),
-    processEncode(this),
-    dialogEncode(this),
     settings("Spidey", "3DSEncode")
 {
     ui->setupUi(this);
-
     configureUi();
 
-    makeConnections();
-
-    //DISABLE CONVERTION, IT'S NOT READY YET
-    ui->btnConvert->setDisabled(true);
+    setFixedSize(sizeHint());
 }
 
-Q3DSEncode::~Q3DSEncode() {
+Q3DSEncode::~Q3DSEncode()
+{
     delete ui;
 }
 
-void Q3DSEncode::changeEvent(QEvent *e) {
+void Q3DSEncode::changeEvent(QEvent *e)
+{
     QMainWindow::changeEvent(e);
     switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
+        case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+        default:
+            break;
     }
 }
 
-void Q3DSEncode::closeEvent(QCloseEvent *event){
+void Q3DSEncode::closeEvent(QCloseEvent *event)
+{
     settings.setValue("window/geometry", saveGeometry());
     QWidget::closeEvent(event);
 }
 
-void Q3DSEncode::configureUi(){
+void Q3DSEncode::configureUi()
+{
     restoreGeometry(settings.value("window/geometry").toByteArray());
 
     //Load icons
-    setWindowIcon(QIcon(":/images/3ds_icon.png"));
     ui->actionOpen->setIcon(QIcon::fromTheme("document-open", QIcon(":/images/document-open.png")));
     ui->actionSaveTo->setIcon(QIcon::fromTheme("document-save", QIcon(":/images/document-save.png")));
     ui->actionConvert->setIcon(QIcon::fromTheme("video-x-generic", QIcon(":/images/video-x-generic.png")));
@@ -63,15 +61,10 @@ void Q3DSEncode::configureUi(){
 
     //Setup date
     ui->datDate->setDateTime(QDateTime::currentDateTime());
-    
-    //Setup progress dialog (hidden)
-    dialogEncode.setLabelText(tr("Encoding video file...\nThis may take several minutes to complete."));
-    dialogEncode.setMinimum(0);
-    dialogEncode.setMaximum(0);
-    dialogEncode.setWindowModality(Qt::ApplicationModal);
 }
 
-void Q3DSEncode::saveSettings(){
+void Q3DSEncode::saveSettings()
+{
     //Paths
     QString src = ui->txtSourceVideo->text();
     QFileInfo srcFile(src);
@@ -95,7 +88,8 @@ void Q3DSEncode::saveSettings(){
     settings.setValue("advanced/split", ui->chkSplit->isChecked());
 }
 
-void Q3DSEncode::on_actionLoadSettings_triggered(){
+void Q3DSEncode::on_actionLoadSettings_triggered()
+{
     ui->gbVideoType->setChecked(settings.value("videoType/3D", ui->gbVideoType->isChecked()).toBool());
     ui->radSideBySide->setChecked(settings.value("videoType/SBS", ui->radSideBySide->isChecked()).toBool());
     ui->radTopBottom->setChecked(settings.value("videoType/TB", ui->radTopBottom->isChecked()).toBool());
@@ -111,129 +105,95 @@ void Q3DSEncode::on_actionLoadSettings_triggered(){
     ui->chkSplit->setChecked(settings.value("advanced/split", ui->chkSplit->isChecked()).toBool());
 }
 
-void Q3DSEncode::makeConnections(){
-    connect(&processEncode, SIGNAL(started()), this, SLOT(handle_processEncode_started()));
-    connect(&processEncode, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(handle_processEncode_finished(int, QProcess::ExitStatus)));
-    connect(&dialogEncode, SIGNAL(canceled()), this, SLOT(handle_dialogEncode_canceled()));
-}
-
-void Q3DSEncode::on_actionAbout_triggered() {
+void Q3DSEncode::on_actionAbout_triggered()
+{
     QMessageBox::about(this, tr("3DSEncodeGUI"), tr("<h1>3DSEncode</h1>"
                                                     "<p>3DSEncode is a all-in-one encoding solution to the 3DS, based on libav and youtube-dl.</p>"
                                                     "<br>"
                                                     "<p>This is free software, made by Spidey (<a href='mailto:spideybr@gmail.com'>spideybr@gmail.com</a>).</p>"
-                                                    "<p>This software is licensed under the GPLv3.</p>"
+                                                    "<p>This software is licensed under the GPLv3 (not yet).</p>"
                                                     "<br>"
-                                                    "<p>Thanks to GBATemp users spinal_cord, Lokao0, SifJar and DiscostewSM</p>"
+                                                    "<p>Thanks to GBATemp users spinal_cord, Lokao0, SifJar and DiscostewSM.</p>"
                                                     "<p>Application icon by CristopherOS (<a href='http://cristopheros.deviantart.com/'>http://cristopheros.deviantart.com/</a>)."));
 }
 
-void Q3DSEncode::on_actionLanguage_triggered() {
+void Q3DSEncode::on_actionLanguage_triggered()
+{
     QMessageBox::information(this, tr("Not Available"), tr("This feature is not yet available."));
 }
 
-void Q3DSEncode::on_actionOpen_triggered() {
+void Q3DSEncode::on_actionOpen_triggered()
+{
     QString old_src = ui->txtSourceVideo->text();
     QString src = QFileDialog::getOpenFileName(this, tr("Open source video file"), old_src.isEmpty() ? settings.value("path/source", QDir::homePath()).toString() : old_src, tr("Video files(*.*)"));
     if (!src.isEmpty()) ui->txtSourceVideo->setText(src);
 }
 
-void Q3DSEncode::on_actionSaveTo_triggered() {
+void Q3DSEncode::on_actionSaveTo_triggered()
+{
     QString old_out = ui->txtOutputVideo->text();
     QString out = QFileDialog::getSaveFileName(this, tr("Save converted video to"), old_out.isEmpty() ? settings.value("path/output", QDir::homePath()).toString() + "/VID_0001.avi" : old_out, tr("AVI video file(*.avi)"));
     if (!out.isEmpty()) ui->txtOutputVideo->setText(out);
 }
 
-void Q3DSEncode::on_actionConvert_triggered() {
-    if (!validateInput()){ return; } //validateInput will handle errors
+void Q3DSEncode::on_actionConvert_triggered()
+{
+    //if (!validateInput()){ return; } //validateInput will handle errors
 
     saveSettings();
 
-    QString tmp;
-    QStringList args;
+    QMap<QString, QString> args;
+
     //Main parameters
-    args << "3dsencode";
-    args << ui->txtSourceVideo->text();
-    args << ui->txtOutputVideo->text();
+    args["source"] = ui->txtSourceVideo->text();
+    args["output"] = ui->txtOutputVideo->text();
     //2D/3D
     if (!ui->gbVideoType->isChecked())
-        args << "2D";
+        args["videoType"] = "2D";
     else if (ui->radSideBySide->isChecked())
-        args << "SBS";
+        args["videoType"] = "SBS";
     else if(ui->radTopBottom->isChecked())
-        args << "TB";
-    args << (ui->chkReversed->isChecked() ? "R" : "N");
+        args["videoType"] = "TB";
+    else if(ui->radRowInterleaved->isChecked())
+        args["videoType"] = "RI";
+    else if(ui->radColumnInterleaved->isChecked())
+        args["videoType"] = "CI";
+    args["reversed"] = (ui->chkReversed->isChecked() ? "Y" : "N");
     //Video
-    args << QString::number(ui->spnCompression->value());
-    tmp = ui->cmbFPS->currentText();
-    tmp.chop(3);
-    args << tmp.trimmed();
-    tmp = ui->cmbResolution->currentText();
-    args << tmp.left(3);
-    args << tmp.right(3);
+    args["compression"] = QString::number(ui->spnCompression->value());
+    args["fps"] = ui->cmbFPS->currentText().replace("fps", "").trimmed();
+    args["width"] = ui->cmbResolution->currentText().left(3);
+    args["height"] = ui->cmbResolution->currentText().right(3);
     //Audio
     switch (ui->cmbSampleRate->currentIndex()){
         case 0:
-            tmp = "22050";
+            args["samplerate"] = "22050";
             break;
         case 1:
-            tmp = "44100";
+            args["samplerate"] = "44100";
             break;
         case 2:
-            tmp = "48000";
+            args["samplerate"] = "48000";
             break;
         case 3:
-            tmp = "96000";
+            args["samplerate"] = "96000";
             break;
         default:
-            tmp = "44100";
+            args["samplerate"] = "44100";
             break;
     }
-    args << tmp;
-    args << QString::number(ui->cmbChannels->currentIndex() + 1);
+    args["channels"] = QString::number(ui->cmbChannels->currentIndex() + 1);
     //Advanced
-    args << ui->datDate->dateTime().toString("yyyy-MM-dd hh:mm");
-    args << ui->cmbThreads->currentText();
-    args << (ui->chkSplit->isChecked() ? "S" : "N");
+    args["date"] = ui->datDate->dateTime().toString("yyyy-MM-dd hh:mm");
+    args["threads"] = ui->cmbThreads->currentText();
+    args["split"] = (ui->chkSplit->isChecked() ? "Y" : "N");
 
-    processEncode.start("/bin/bash", args);
+    QEncodingDialog encodingDialog(args);
+    encodingDialog.exec();
 }
 
-void Q3DSEncode::handle_dialogEncode_canceled(){
-    if (processEncode.state() != QProcess::NotRunning)
-        processEncode.close();
-}
-
-void Q3DSEncode::handle_processEncode_started(){
-    dialogEncode.show();
-}
-
-void Q3DSEncode::handle_processEncode_finished(int exitCode, QProcess::ExitStatus exitStatus){
-    dialogEncode.hide();
-    if (exitStatus == QProcess::CrashExit) {
-        cleanupResidualFiles();
-        //QMessageBox::information(this, tr("Encoding Cancelled"), tr("You cancelled the conversion process."));
-    } else if (exitCode != 0) {
-        cleanupResidualFiles();
-        QMessageBox::warning(this, tr("Encoding Error"), tr("An error occurred while encoding the video.\n") + QString(processEncode.readAllStandardError()));
-    } else
-        QMessageBox::information(this, tr("Encoding Completed"), tr("Conversion is completed.\nNow, transfer %1 to your 3DS SD card.").arg(QFileInfo(ui->txtOutputVideo->text()).fileName()));
-}
-
-void Q3DSEncode::cleanupResidualFiles(){
-    if (ui->chkSplit->isChecked()){
-        QFileInfo out(ui->txtOutputVideo->text());
-        QDir outDir(out.dir());
-        QString fmt = out.fileName().replace("01.avi", "[0-9][0-9].avi");
-        QFileInfoList outDirList(outDir.entryInfoList(QStringList(fmt), QDir::Files | QDir::NoSymLinks));
-        foreach (QFileInfo file, outDirList){
-            QFile(file.filePath()).remove();
-        }
-    }
-    QFile(ui->txtOutputVideo->text()).remove();
-}
-
-bool Q3DSEncode::validateInput() {
+bool Q3DSEncode::validateInput()
+{
     const QString warningTitle(tr("Input Validation Error"));
 
     QString src = ui->txtSourceVideo->text();
@@ -242,7 +202,7 @@ bool Q3DSEncode::validateInput() {
         QMessageBox::warning(this, warningTitle, tr("Source video not informed."));
         ui->txtSourceVideo->setFocus();
         return false;
-    }else if(!src.contains(QRegExp("^[(http://)(www)]")) && !QFile(src).exists()){
+    }else if(!QFile(src).exists() && !(src.startsWith("www") || src.startsWith("http://"))){
         QMessageBox::warning(this, warningTitle, tr("Source video is neither a valid video file or an URL."));
         ui->txtSourceVideo->setFocus();
         return false;
@@ -275,9 +235,13 @@ bool Q3DSEncode::validateInput() {
         } else if (ui->chkSplit->isChecked()){ //If split is set, check if files could be overwritten
             QDir outDir(QFileInfo(out).dir());
             if (outDir.entryList(QStringList(outFileName.replace("01", "[1-9][1-9]"))).size() > 0){
-                QMessageBox::StandardButton r = QMessageBox::warning(this, tr("Files may be overwritten"), tr("There are some files in the output directory that may be overwritten"
-                                                                                                " during the encoding process.\nAre you sure you want to continue?"),
-                                    QMessageBox::Yes | QMessageBox::No);
+                QMessageBox::StandardButton r = QMessageBox::warning(this,
+                                                                     tr("Files may be overwritten"),
+                                                                     tr("There are some files in the output directory that may be overwritten"
+                                                                        " during the encoding process.\nAre you sure you want to continue?"
+                                                                        ),
+                                                                     QMessageBox::Yes | QMessageBox::No
+                                                                     );
                 if (r == QMessageBox::No){
                     ui->txtOutputVideo->setFocus();
                     return false;

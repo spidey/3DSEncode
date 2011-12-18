@@ -15,12 +15,14 @@ TRANSLATIONS += 3DSEncode_en.ts\
 
 # Input
 HEADERS += \
-    q3dsencode.h
+    Q3DSEncode.h \
+    QEncodingDialog.h
 FORMS += \
-    q3dsencode.ui
+    Q3DSEncode.ui \
+    QEncodingDialog.ui
 SOURCES += main.cpp \
-    q3dsencode.cpp
+    Q3DSEncode.cpp \
+    QEncodingDialog.cpp
 
 RESOURCES += \
-    3dsencode.qrc
-
+    3DSEncode.qrc

@@ -16,6 +16,10 @@
   <property name="windowTitle">
    <string>3DSEncode</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="3dsencode.qrc">
+    <normaloff>:/images/3ds_icon.png</normaloff>:/images/3ds_icon.png</iconset>
+  </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
   </property>
@@ -66,7 +70,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab2D3D">
        <attribute name="title">
@@ -938,7 +942,9 @@ Rate</string>
   <tabstop>btnOutputVideo</tabstop>
   <tabstop>btnConvert</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="3dsencode.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionQuit</sender>

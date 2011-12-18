@@ -19,7 +19,7 @@ public:
     ~Q3DSEncode();
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *event);
 
 private slots:
     //Main actions and menu
@@ -29,24 +29,15 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionLanguage_triggered();
     void on_actionLoadSettings_triggered();
-    //Encode process management
-    void handle_processEncode_started();
-    void handle_processEncode_finished(int, QProcess::ExitStatus);
-    void handle_dialogEncode_canceled();
-    
+
 private:
     Ui::Q3DSEncode *ui;
-    QProcess processEncode;
-    QProgressDialog dialogEncode;
     QSettings settings;
     //Methods
-    void closeEvent(QCloseEvent *);
-    void makeConnections();
+    void closeEvent(QCloseEvent *event);
     void configureUi();
     bool validateInput();
     void saveSettings();
-    void startEncodingProcess(QStringList &);
-    void cleanupResidualFiles();
 };
 
 #endif // Q3DSENCODE_H
