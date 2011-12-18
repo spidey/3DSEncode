@@ -17,7 +17,7 @@
    <string>3DSEncode</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="3dsencode.qrc">
+   <iconset resource="3DSEncode.qrc">
     <normaloff>:/images/3ds_icon.png</normaloff>:/images/3ds_icon.png</iconset>
   </property>
   <property name="locale">
@@ -70,7 +70,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab2D3D">
        <attribute name="title">
@@ -943,7 +943,7 @@ Rate</string>
   <tabstop>btnConvert</tabstop>
  </tabstops>
  <resources>
-  <include location="3dsencode.qrc"/>
+  <include location="3DSEncode.qrc"/>
  </resources>
  <connections>
   <connection>

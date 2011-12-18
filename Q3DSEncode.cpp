@@ -138,7 +138,7 @@ void Q3DSEncode::on_actionSaveTo_triggered()
 
 void Q3DSEncode::on_actionConvert_triggered()
 {
-    //if (!validateInput()){ return; } //validateInput will handle errors
+    if (!validateInput()){ return; } //validateInput will handle errors
 
     saveSettings();
 
@@ -202,7 +202,7 @@ bool Q3DSEncode::validateInput()
         QMessageBox::warning(this, warningTitle, tr("Source video not informed."));
         ui->txtSourceVideo->setFocus();
         return false;
-    }else if(!QFile(src).exists() && !(src.startsWith("www") || src.startsWith("http://"))){
+    }else if(!QFile(src).exists() && !src.contains(QRegExp("^(http://|www)"))){
         QMessageBox::warning(this, warningTitle, tr("Source video is neither a valid video file or an URL."));
         ui->txtSourceVideo->setFocus();
         return false;

@@ -20,7 +20,7 @@
    <string>Video Processing</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="3dsencode.qrc">
+   <iconset resource="3DSEncode.qrc">
     <normaloff>:/images/3ds_icon.png</normaloff>:/images/3ds_icon.png</iconset>
   </property>
   <property name="locale">
@@ -28,7 +28,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="lblEncoding">
+    <widget class="QLabel" name="lblDialogText">
      <property name="text">
       <string>Encoding video file...
 This may take several minutes to complete.</string>
@@ -61,7 +61,7 @@ This may take several minutes to complete.</string>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="lblStatus">
+      <widget class="QLabel" name="lblConvertionStatus">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -94,7 +94,7 @@ This may take several minutes to complete.</string>
    <item>
     <widget class="QTextEdit" name="txtEncoding">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -220,7 +220,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>txtEncoding</tabstop>
  </tabstops>
  <resources>
-  <include location="3dsencode.qrc"/>
+  <include location="3DSEncode.qrc"/>
  </resources>
  <connections>
   <connection>

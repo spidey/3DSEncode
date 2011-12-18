@@ -21,12 +21,13 @@ public:
 private slots:
     void on_btnAdvanced_toggled(bool toggled);
     void processRead();
+    void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 private:
     enum ProcessingState{
         Idle,
         Downloading,
-        Converting
+        Encoding
     };
 
     enum ButtonToShow{
@@ -41,10 +42,11 @@ private:
     ProcessingState state;
     //methods
     void reject();
-    void startWorking();
+    void startDownloading();
+    void startEncoding();
     bool confirmCancel();
-    void workFinished(QString bannerText);
-    void addBannerToLog(QString txt);
+    void workFinished(QString msg);
+    void writeBannerToLog(QString txt);
     void setupButtonBoxes(ButtonToShow btn);
     void cleanupResidualFiles();
 };
